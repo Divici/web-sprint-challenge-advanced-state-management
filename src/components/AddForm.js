@@ -1,15 +1,17 @@
+//import { set } from 'msw/lib/types/context';
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+//import mapStateToProps from 'react-redux/lib/connect/mapStateToProps';
+import { addNewSmurf, setError } from '../actions';
 
 const AddForm = (props) => {
+    const {errorMessage, dispatch} = props;
     const [state, setState] = useState({
         name:"",
         position:"",
         nickname:"",
         description:""
     });
-
-    //remove when error state is added
-    const errorMessage = "";
 
     const handleChange = e => {
         setState({
@@ -22,8 +24,10 @@ const AddForm = (props) => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
             //dispatch a custom error action
+            dispatch(setError('Missing an input'));
         } else {
             //dispatch an addSmurf action
+            dispatch(addNewSmurf(state));
         }
     }
 
@@ -54,7 +58,13 @@ const AddForm = (props) => {
     </section>);
 }
 
-export default AddForm;
+const mapStateToProps = (state) => {
+    return {
+        errorMessage: state.errorMessage
+    }
+}
+
+export default connect(mapStateToProps, {addNewSmurf, setError})(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.

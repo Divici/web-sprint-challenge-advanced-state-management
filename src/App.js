@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchSmurfs } from "./actions";
 
@@ -8,9 +8,10 @@ import Header from './components/Header';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+//import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 
-const App = ()=> {
+const App = (props)=> {
+  const {fetchSmurfs} = props;
 
   useEffect(()=>{
     fetchSmurfs();
