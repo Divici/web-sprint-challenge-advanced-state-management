@@ -23,10 +23,8 @@ const AddForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            //dispatch a custom error action
             dispatch(setError('Missing an input'));
         } else {
-            //dispatch an addSmurf action
             dispatch(addNewSmurf(state));
         }
     }
@@ -64,7 +62,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addNewSmurf, setError})(AddForm);
+export default connect(mapStateToProps)(AddForm);
 
 //Task List:
 //1. Connect the errorMessage, setError and addSmurf actions to the AddForm component.
