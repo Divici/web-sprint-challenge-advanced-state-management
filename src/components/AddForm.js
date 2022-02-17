@@ -25,6 +25,7 @@ const AddForm = (props) => {
             dispatch(setError('Missing an input'));
         } else {
             dispatch(addNewSmurf(state));
+            dispatch(setError(''));
         }
     }
 
